@@ -1,0 +1,1 @@
+export { maxSizeOf } from './maxSixeOf'
