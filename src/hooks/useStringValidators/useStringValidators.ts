@@ -1,9 +1,9 @@
 import { useCallback } from 'react';
 import { StringValidator, StringValidationHandler } from './types'
 
-export const useStringValidators = <T>(
-  validators?: StringValidator<T>[]
-): StringValidationHandler<T> => {
+export const useStringValidators = (
+  validators?: StringValidator[]
+): StringValidationHandler => {
   return useCallback((value): [boolean, string?] => {
     if(!validators) return [true]
 
