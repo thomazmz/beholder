@@ -1,7 +1,7 @@
 import { useInput } from './useInput';
 import { renderHook } from '@testing-library/react-hooks';
 import { Input, InputHandler } from './types';
-import { StringValidator } from '../useStringValidators'
+import { Validator } from '../useValidators'
 import { act } from 'react-dom/test-utils';
 
 describe('useInputDataMounter', () => {
@@ -17,8 +17,8 @@ describe('useInputDataMounter', () => {
     message: someMessage
   }
 
-  const inputDataHandler = jest.fn() as InputHandler<string>;
-  const someValidator = jest.fn() as jest.MockedFunction<StringValidator>;
+  const inputDataHandler = jest.fn() as InputHandler;
+  const someValidator = jest.fn() as jest.MockedFunction<Validator<string>>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -26,7 +26,7 @@ describe('useInputDataMounter', () => {
 
   it('should call onInputDataChange on initialization with inputData', () => {
     someValidator.mockReturnValue([false, someMessage])
-    renderHook(() => useInput<string>(someKey, someValue, [someValidator], inputDataHandler));
+    renderHook(() => useInput(someKey, someValue, [someValidator], inputDataHandler));
     expect(inputDataHandler).toHaveBeenCalledWith(someInputData);
   });
 

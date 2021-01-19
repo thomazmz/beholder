@@ -1,13 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
-import { InputHandler, Input } from '../../types'
-import { StringValidator } from '../useStringValidators'
+import { InputHandler, Input } from '../useInput'
+import { Validator } from '../useValidators'
 import { useInputResolver } from '../useInputResolver'
 
 export const useInput = <T>(
   key: string,
   value?: T,
-  validators?: StringValidator[],
-  inputDataHandler?: InputHandler<T>
+  validators?: Validator<T>[],
+  inputDataHandler?: InputHandler
 ): [ Input<T>, (value: T | undefined) => void ] => {
 
   const resolveInputData = useInputResolver<T>(validators)
